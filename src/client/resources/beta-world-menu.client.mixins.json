@@ -1,12 +1,13 @@
 {
-	"required": true,
-	"package": "com.betaworldmenu.mixin.client",
-	"compatibilityLevel": "JAVA_17",
-	"client": [
-		"CreateWorldScreenMixin",
-        "ScreenMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.betaworldmenu.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "CreateWorldScreenMixin",
+    "ScreenMixin",
+    "VideoOptionsScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

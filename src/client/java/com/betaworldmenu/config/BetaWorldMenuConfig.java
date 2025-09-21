@@ -15,6 +15,7 @@ public class BetaWorldMenuConfig {
     private static Gson gson;
 
     public int worldTypeID = 0;
+    public boolean oldVideoOptionsScreen = false;
 
     public void write() {
         try (FileWriter writer = new FileWriter(BetaWorldMenuConfig.CONFIG_PATH)) {

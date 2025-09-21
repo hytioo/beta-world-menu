@@ -2,14 +2,17 @@ package com.betaworldmenu.mixin.client;
 
 import com.betaworldmenu.betaworldmenu.Constants;
 import com.betaworldmenu.config.BetaWorldMenuConfig;
+import net.fabricmc.fabric.mixin.client.keybinding.GameOptionsMixin;
 import net.minecraft.client.QuickPlayLogger;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.screen.world.WorldCreator;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.world.Difficulty;
 import org.spongepowered.asm.mixin.Final;
