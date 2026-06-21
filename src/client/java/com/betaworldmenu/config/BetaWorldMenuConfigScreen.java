@@ -8,9 +8,6 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BetaWorldMenuConfigScreen implements ModMenuApi {
 
     @Override

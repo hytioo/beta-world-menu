@@ -57,11 +57,6 @@ public abstract class CreateWorldScreenMixin extends Screen {
         this.isWorldOptionsToggled = false;
     }
 
-    @Unique
-    private static int clamp(int val, int max) {
-        return Math.max(0, Math.min(max, val));
-    }
-
     @Inject(
             method = "render",
             at = @At("HEAD"),
