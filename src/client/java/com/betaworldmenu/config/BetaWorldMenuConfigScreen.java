@@ -8,6 +8,9 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BetaWorldMenuConfigScreen implements ModMenuApi {
 
     @Override
@@ -35,7 +38,6 @@ public class BetaWorldMenuConfigScreen implements ModMenuApi {
         }
 
         general.addEntry(entryBuilder.startTextDescription(Text.of("Open world creation screen to update the list. Creating the world is unnecessary")).build());
-
         general.addEntry(
                 entryBuilder.startSelector(
                                 Text.of("World Type"),
@@ -45,6 +47,12 @@ public class BetaWorldMenuConfigScreen implements ModMenuApi {
                         .setDefaultValue(0)
                         .setNameProvider(i -> Text.of(config.availableWorldTypes.get(i)))
                         .setSaveConsumer(i -> config.selectedWorldTypeID = i)
+                        .build()
+        );
+
+        general.addEntry(
+                entryBuilder.startBooleanToggle(Text.of("Show Gameplay Options"), config.showGameplayOptions)
+                        .setSaveConsumer(i -> config.showGameplayOptions = i)
                         .build()
         );
 

@@ -19,7 +19,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.betaworldmenu.betaworldmenu.Constants.*;
 
@@ -91,7 +93,7 @@ public abstract class CreateWorldScreenMixin extends Screen {
             cancellable = true
     )
     public void betaworldmenu$init(CallbackInfo ci) {
-
+        //Menu
         this.remove(worldName);
         this.remove(worldSeed);
         this.remove(gameModeButton);
@@ -182,23 +184,33 @@ public abstract class CreateWorldScreenMixin extends Screen {
         this.worldCreator.update();
         updateWorldDirectoryName();
 
-//        this.worldCreator.setWorldType(WorldType.);
-//
-        //System.out.println(worldCreator.getNormalWorldTypes());
-//        System.out.println(worldCreator.getExtendedWorldTypes());
-        List<WorldCreator.WorldType> worldTypes = worldCreator.getNormalWorldTypes();
-
+        //Getting Config
         BetaWorldMenuConfig config = BetaWorldMenuConfig.get();
 
-        int configWorldTypeID = config.selectedWorldTypeID;
-        int safeID = clamp(configWorldTypeID, worldTypes.size());
+        if(!config.showGameplayOptions) {
+            allowCheatsButton.visible = false;
+            gameModeButton.visible = false;
+            difficultyButton.setPosition(centerX, padding * 3 + absY);
+            createNewWorldButton.setPosition(centerX, padding * 4 + absY);
+            cancelButton.setPosition(rightColumnX, padding * 4 + absY);
+        }
 
+        //Getting all available world types
+        List<WorldCreator.WorldType> worldTypes = worldCreator.getNormalWorldTypes();
+        if(worldTypes == null || worldTypes.isEmpty()) return;
+
+        //Getting WorldType from Config
+        int maxIndex = worldTypes.size() - 1;
+        int safeID = Math.max(0, Math.min(config.selectedWorldTypeID, maxIndex));
         this.worldCreator.setWorldType(worldTypes.get(safeID));
 
+        //Writing available world types
+        Map<Integer, String> types = new HashMap<>();
         for(int i = 0; i < worldTypes.size(); i++)
         {
-            config.availableWorldTypes.put(i, worldTypes.get(i).getName().getString());
+            types.put(i, worldTypes.get(i).getName().getString());
         }
+        config.availableWorldTypes = types;
 
         ci.cancel();
     }

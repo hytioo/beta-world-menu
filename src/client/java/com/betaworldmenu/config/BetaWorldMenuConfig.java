@@ -1,6 +1,7 @@
 package com.betaworldmenu.config;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -10,8 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class BetaWorldMenuConfig {
-    private static final File CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("betaworldmenu.json").toFile();
-
+    private static final File CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("beta_world_menu.json").toFile();
     private static BetaWorldMenuConfig instance;
     private static Gson gson;
 
@@ -22,10 +22,10 @@ public class BetaWorldMenuConfig {
             2, "Large Biomes",
             3, "AMPLIFIED"
     );
-
+    public boolean showGameplayOptions = true;
     public static void init() {
         if (!BetaWorldMenuConfig.CONFIG_PATH.exists()) {
-            gson = new Gson();
+            gson = new GsonBuilder().setPrettyPrinting().create();
             instance = new BetaWorldMenuConfig();
             instance.write();
         }
@@ -41,7 +41,7 @@ public class BetaWorldMenuConfig {
 
     public static BetaWorldMenuConfig get() {
         if (instance == null) {
-            gson = new Gson();
+            gson = new GsonBuilder().setPrettyPrinting().create();
 
             if (!BetaWorldMenuConfig.CONFIG_PATH.exists()) {
                 instance = new BetaWorldMenuConfig();
