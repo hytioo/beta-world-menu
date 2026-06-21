@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "CreateWorldScreenMixin",
-    "ScreenMixin",
-    "VideoOptionsScreenMixin"
+    "ScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

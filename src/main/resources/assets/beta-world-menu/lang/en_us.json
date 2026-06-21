@@ -1,4 +1,5 @@
 {
-  "text.modmenu.betaworldmenu.title": "Beta World Menu",
-  "betaworldmenu.selectWorld.resultFolder": "Will be saved in:"
+  "text.modmenu.betaworldmenu.title": "Beta World Creation Screen",
+  "betaworldmenu.selectWorld.resultFolder": "Will be saved in:",
+  "title.betaworldmenu.config": "Beta World Creation Screen"
 }

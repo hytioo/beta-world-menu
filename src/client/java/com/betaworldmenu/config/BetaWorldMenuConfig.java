@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class BetaWorldMenuConfig {
     private static final File CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("betaworldmenu.json").toFile();
@@ -14,8 +15,21 @@ public class BetaWorldMenuConfig {
     private static BetaWorldMenuConfig instance;
     private static Gson gson;
 
-    public int worldTypeID = 0;
-    public boolean oldVideoOptionsScreen = false;
+    public int selectedWorldTypeID = 0;
+    public Map<Integer, String> availableWorldTypes = Map.of(
+            0, "Default",
+            1, "Superflat",
+            2, "Large Biomes",
+            3, "AMPLIFIED"
+    );
+
+    public static void init() {
+        if (!BetaWorldMenuConfig.CONFIG_PATH.exists()) {
+            gson = new Gson();
+            instance = new BetaWorldMenuConfig();
+            instance.write();
+        }
+    }
 
     public void write() {
         try (FileWriter writer = new FileWriter(BetaWorldMenuConfig.CONFIG_PATH)) {

@@ -1,6 +1,5 @@
 package com.betaworldmenu.mixin.client;
 
-import com.betaworldmenu.betaworldmenu.Constants;
 import com.betaworldmenu.config.BetaWorldMenuConfig;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -77,11 +76,11 @@ public abstract class CreateWorldScreenMixin extends Screen {
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.halfWidth, 20, -1);
 
         int textPositionX = this.halfWidth - 100;
-        context.drawTextWithShadow(this.textRenderer, WORLD_NAME_LABEL, textPositionX, 47, Constants.getTextColor());
-        context.drawTextWithShadow(this.textRenderer, this.worldDirectoryName, textPositionX, 85, Constants.getTextColor());
+        context.drawTextWithShadow(this.textRenderer, WORLD_NAME_LABEL, textPositionX, 47, getTextColor());
+        context.drawTextWithShadow(this.textRenderer, this.worldDirectoryName, textPositionX, 85, getTextColor());
 
-        context.drawTextWithShadow(this.textRenderer, SEED_LABEL, textPositionX, 47 + padding, Constants.getTextColor());
-        context.drawTextWithShadow(this.textRenderer, SEED_INFO_LABEL, textPositionX, 85 + padding, Constants.getTextColor());
+        context.drawTextWithShadow(this.textRenderer, SEED_LABEL, textPositionX, 47 + padding, getTextColor());
+        context.drawTextWithShadow(this.textRenderer, SEED_INFO_LABEL, textPositionX, 85 + padding, getTextColor());
 
         ci.cancel();
     }
@@ -185,14 +184,21 @@ public abstract class CreateWorldScreenMixin extends Screen {
 
 //        this.worldCreator.setWorldType(WorldType.);
 //
-        System.out.println(worldCreator.getNormalWorldTypes());
+        //System.out.println(worldCreator.getNormalWorldTypes());
 //        System.out.println(worldCreator.getExtendedWorldTypes());
         List<WorldCreator.WorldType> worldTypes = worldCreator.getNormalWorldTypes();
 
-        int configWorldTypeID = BetaWorldMenuConfig.get().worldTypeID;
+        BetaWorldMenuConfig config = BetaWorldMenuConfig.get();
+
+        int configWorldTypeID = config.selectedWorldTypeID;
         int safeID = clamp(configWorldTypeID, worldTypes.size());
 
         this.worldCreator.setWorldType(worldTypes.get(safeID));
+
+        for(int i = 0; i < worldTypes.size(); i++)
+        {
+            config.availableWorldTypes.put(i, worldTypes.get(i).getName().getString());
+        }
 
         ci.cancel();
     }

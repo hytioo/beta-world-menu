@@ -15,11 +15,11 @@
 	"icon": "assets/beta-world-menu/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"com.betaworldmenu.BetaWorldMenu"
-		],
 		"client": [
 			"com.betaworldmenu.BetaWorldMenuClient"
+		],
+		"modmenu": [
+			"com.betaworldmenu.config.BetaWorldMenuConfigScreen"
 		]
 	},
 	"mixins": [
