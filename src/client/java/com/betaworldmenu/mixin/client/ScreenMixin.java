@@ -12,10 +12,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ScreenMixin {
 
     @Shadow
+    protected abstract void clearChildren();
+
+    @Shadow
     protected abstract void init();
 
     @Inject(method = "resize", at = @At("TAIL"))
     private void onResize(MinecraftClient client, int width, int height, CallbackInfo ci) {
+        clearChildren();
         init();
     }
 }

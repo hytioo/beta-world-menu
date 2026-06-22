@@ -89,6 +89,9 @@ public abstract class CreateWorldScreenMixin extends Screen {
     )
     public void betaworldmenu$init(CallbackInfo ci) {
         //Menu
+
+        //GridWidget.Adder adder = this.grid.setRowSpacing(8).createAdder(1);
+
         this.remove(worldName);
         this.remove(worldSeed);
         this.remove(gameModeButton);
